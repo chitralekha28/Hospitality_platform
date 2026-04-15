@@ -1,0 +1,36 @@
+name: CI-CD Deploy Hospitality App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t chitralekha18/hospitality-platform:latest .
+          docker push chitralekha18/hospitality-platform:latest
+
+      - name: Deploy on EC2 Kubernetes
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull chitralekha18/hospitality-platform:latest
+            kubectl set image deployment/hospitality-app hospitality-app=chitralekha18/hospitality-platform:latest
+            kubectl rollout status deployment/hospitality-app
