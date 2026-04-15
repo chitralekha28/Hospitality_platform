@@ -34,4 +34,4 @@ jobs:
           script: |
             docker pull chitralekha18/hospitality-platform:latest
             kubectl set image deployment/hospitality-app hospitality-app=chitralekha18/hospitality-platform:latest
-            kubectl rollout status deployment/hospitality-app
+            kubectl rollout status deployment/hospitality-app --timeout=10m
