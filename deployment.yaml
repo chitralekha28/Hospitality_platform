@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hospitality-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hospitality-app
+  template:
+    metadata:
+      labels:
+        app: hospitality-app
+    spec:
+      containers:
+      - name: hospitality-app
+        image: chitralekha18/hospitality-platform:stable
+        ports:
+        - containerPort: 8499
