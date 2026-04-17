@@ -24,7 +24,9 @@ jobs:
           docker build -t chitralekha18/hospitality-platform:latest .
           docker push chitralekha18/hospitality-platform:latest
 
+      # 🚫 Disabled deployment step (SSH issue)
       - name: Deploy on EC2 Kubernetes
+        if: false
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
