@@ -1,0 +1,12 @@
+chromadb
+diffusers
+duckduckgo-search
+google-genai
+langchain-community
+langchain-groq
+Pillow
+python-dotenv
+requests
+sentence-transformers
+streamlit
+torch
