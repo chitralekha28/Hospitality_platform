@@ -10,7 +10,6 @@ try:
     from .tasks import HospitalityTasks
 except ImportError:
     from tasks import HospitalityTasks
-
 load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
