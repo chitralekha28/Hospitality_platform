@@ -21,7 +21,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t chitralekha18/hospitality-platform:latest .
+          docker build --no-cache -t chitralekha18/hospitality-platform:latest .
           docker push chitralekha18/hospitality-platform:latest
 
       # 🚫 Disabled deployment step (SSH issue)
